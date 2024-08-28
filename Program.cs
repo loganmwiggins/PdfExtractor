@@ -15,13 +15,16 @@ namespace PDFExtractionTest
             string? pdfPath;
             string? outputDir;
 
+            Console.WriteLine();
             pdfPath = GetUserInput("Enter PDF path:");
 
             while (true)
             {
                 if (!File.Exists(pdfPath) || Path.GetExtension(pdfPath).ToLower() != ".pdf")
                 {
+                    SetConsoleColor("red");
                     Console.WriteLine("The file does not exist or is not a PDF. Please enter a valid PDF path.");
+                    ResetConsoleColor();
                     Console.WriteLine();
                     pdfPath = GetUserInput("Enter PDF path:");
                 }
@@ -44,7 +47,9 @@ namespace PDFExtractionTest
                     }
                     catch (Exception e)
                     {
+                        SetConsoleColor("red");
                         Console.WriteLine("Invalid file path or file does not exist. Please try again.");
+                        ResetConsoleColor();
                         pdfPath = GetUserInput("Enter PDF path:");
                     }
                 }
@@ -66,7 +71,9 @@ namespace PDFExtractionTest
                 }
                 catch (Exception e)
                 {
+                    SetConsoleColor("red");
                     Console.WriteLine($"Failed to create directory {outputDir}: {e.Message}");
+                    ResetConsoleColor();
                     return;
                 }
 
@@ -84,17 +91,25 @@ namespace PDFExtractionTest
                         try
                         {
                             image.Save(newFilePath, ImageFormat.Png);
-                            Console.WriteLine($"Page {i + 1} saved as {newFilePath}");
+                            SetConsoleColor("green");
+                            Console.Write($"Page {i + 1} saved as ");
+                            ResetConsoleColor();
+                            Console.Write(newFilePath);
+                            Console.WriteLine();
                         }
                         catch (Exception e)
                         {
+                            SetConsoleColor("red");
                             Console.WriteLine($"Failed to save Page {i + 1} as an image: {e.Message}");
+                            ResetConsoleColor();
                         }
                     }
                 }
 
                 Console.WriteLine();
+                SetConsoleColor("green");
                 Console.WriteLine("PDF pages extracted and saved as PNG images.");
+                ResetConsoleColor();
             }
         }
 
@@ -104,6 +119,32 @@ namespace PDFExtractionTest
             string? inputLine = Console.ReadLine();
 
             return string.IsNullOrEmpty(inputLine) ? null : inputLine;
+        }
+
+        static void SetConsoleColor(string color)
+        {
+            switch (color)
+            {
+                case "red":
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    break;
+                case "green":
+                    Console.ForegroundColor = ConsoleColor.Green;
+                    break;
+                case "yellow":
+                    Console.ForegroundColor = ConsoleColor.Yellow;
+                    break;
+                case "blue":
+                    Console.ForegroundColor = ConsoleColor.Blue;
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        static void ResetConsoleColor()
+        {
+            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }
