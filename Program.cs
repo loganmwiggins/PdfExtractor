@@ -12,11 +12,15 @@ namespace PDFExtractionTest
     {
         static void Main(string[] args)
         {
+            ResetConsoleColor();
+
             string? pdfPath;
             string? outputDir;
 
+            // User prompt to get PDF file path
             Console.WriteLine();
             pdfPath = GetUserInput("Enter PDF path:");
+            pdfPath = RemoveQuotations(pdfPath);
 
             while (true)
             {
@@ -27,8 +31,18 @@ namespace PDFExtractionTest
                     ResetConsoleColor();
                     Console.WriteLine();
                     pdfPath = GetUserInput("Enter PDF path:");
+                    pdfPath = RemoveQuotations(pdfPath);
                 }
-                else break;
+                else
+                {
+                    Console.Clear();
+                    Console.WriteLine("Source file: ");
+                    SetConsoleColor("cyan");
+                    Console.WriteLine(pdfPath);
+                    ResetConsoleColor();
+                    Console.WriteLine();
+                    break;
+                }
             }
 
             // Create a PdfDocument instance and load the PDF
@@ -59,8 +73,10 @@ namespace PDFExtractionTest
                 string fileNameNoExt = Path.GetFileNameWithoutExtension(pdfPath);
                 outputDir = pdfPath.Split(".")[0] + "-Images";
 
-                Console.WriteLine();
-                Console.WriteLine($"Your images will be exported to: {outputDir}");
+                Console.WriteLine("Export to folder: ");
+                SetConsoleColor("cyan");
+                Console.WriteLine(outputDir);
+                ResetConsoleColor();
                 Console.WriteLine();
 
                 // Ensure the output directory exists by creating it
@@ -94,7 +110,7 @@ namespace PDFExtractionTest
                             SetConsoleColor("green");
                             Console.Write($"Page {i + 1} saved as ");
                             ResetConsoleColor();
-                            Console.Write(newFilePath);
+                            Console.Write($"{fileNameNoExt}_Page{i + 1}.png");
                             Console.WriteLine();
                         }
                         catch (Exception e)
@@ -121,6 +137,14 @@ namespace PDFExtractionTest
             return string.IsNullOrEmpty(inputLine) ? null : inputLine;
         }
 
+        static string? RemoveQuotations(string path)
+        {
+            if (string.IsNullOrEmpty(path))
+                return null;
+            else
+                return path.Trim(new char[] { '"' });
+        }
+
         static void SetConsoleColor(string color)
         {
             switch (color)
@@ -136,6 +160,12 @@ namespace PDFExtractionTest
                     break;
                 case "blue":
                     Console.ForegroundColor = ConsoleColor.Blue;
+                    break;
+                case "cyan":
+                    Console.ForegroundColor = ConsoleColor.Cyan;
+                    break;
+                case "magenta":
+                    Console.ForegroundColor = ConsoleColor.Magenta;
                     break;
                 default:
                     break;
