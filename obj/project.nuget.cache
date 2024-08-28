@@ -1,0 +1,14 @@
+{
+  "version": 2,
+  "dgSpecHash": "Tn7E0/iy/q0=",
+  "success": true,
+  "projectFilePath": "C:\\Users\\jmflpat\\OneDrive - JM Family Enterprises\\Projects\\PDF_Extraction\\PDFExtractionTest\\PDFExtractionTest.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\jmflpat\\.nuget\\packages\\microsoft.win32.systemevents\\8.0.0\\microsoft.win32.systemevents.8.0.0.nupkg.sha512",
+    "C:\\Users\\jmflpat\\.nuget\\packages\\spire.pdf\\10.8.1\\spire.pdf.10.8.1.nupkg.sha512",
+    "C:\\Users\\jmflpat\\.nuget\\packages\\system.drawing.common\\8.0.8\\system.drawing.common.8.0.8.nupkg.sha512",
+    "C:\\Users\\jmflpat\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "C:\\Users\\jmflpat\\.nuget\\packages\\system.text.encoding.codepages\\6.0.0\\system.text.encoding.codepages.6.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
