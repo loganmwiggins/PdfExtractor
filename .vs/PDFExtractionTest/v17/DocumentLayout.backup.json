@@ -3,8 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\jmflpat\\OneDrive - JM Family Enterprises\\Projects\\PDF_Extraction\\PDFExtractionTest\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\jmflpat\\OneDrive - JM Family Enterprises\\Projects\\PDF_Extraction\\PDFExtractionTest\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A4B6A350-5D58-4B56-8198-CDB36691FCDE}|PDFExtractionTest.csproj|c:\\users\\jmflpat\\onedrive - jm family enterprises\\projects\\pdf_extraction\\pdfextractiontest\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A4B6A350-5D58-4B56-8198-CDB36691FCDE}|PDFExtractionTest.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -24,7 +24,7 @@
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\jmflpat\\OneDrive - JM Family Enterprises\\Projects\\PDF_Extraction\\PDFExtractionTest\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAADwAAAAAAAAAAAAAAEkAAAA+AAAAAAAAAA==",
+              "ViewState": "AgIAAFwAAAAAAAAAAAAQwGIAAABpAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-08-28T00:44:27.272Z",
               "EditorCaption": ""

@@ -9,30 +9,31 @@ namespace PDFExtractionTest
         static void Main(string[] args)
         {
             ResetConsoleColor();
+            Console.Clear();
 
             string? pdfPath;
             string? outputDir;
 
             // User prompt to get PDF file path
             Console.WriteLine();
-            pdfPath = GetUserInput("Enter PDF path:");
+            pdfPath = GetUserInput("Enter PDF file path:");
             pdfPath = RemoveQuotations(pdfPath);
 
             while (true)
             {
                 if (!File.Exists(pdfPath) || Path.GetExtension(pdfPath).ToLower() != ".pdf")
                 {
-                    SetConsoleColor("red");
-                    Console.WriteLine("The file does not exist or is not a PDF. Please enter a valid PDF path.");
+                    SetConsoleColor("yellow");
+                    Console.WriteLine("⚠️ The file does not exist or is not a PDF. Please enter a valid PDF file path.");
                     ResetConsoleColor();
                     Console.WriteLine();
-                    pdfPath = GetUserInput("Enter PDF path:");
+                    pdfPath = GetUserInput("Enter PDF file path:");
                     pdfPath = RemoveQuotations(pdfPath);
                 }
                 else
                 {
                     Console.Clear();
-                    Console.WriteLine("Source file: ");
+                    Console.WriteLine("📄 Source file: ");
                     SetConsoleColor("cyan");
                     Console.WriteLine(pdfPath);
                     ResetConsoleColor();
@@ -57,8 +58,8 @@ namespace PDFExtractionTest
                     }
                     catch (Exception e)
                     {
-                        SetConsoleColor("red");
-                        Console.WriteLine("Invalid file path or file does not exist. Please try again.");
+                        SetConsoleColor("yellow");
+                        Console.WriteLine("⚠️ Invalid file path or file does not exist. Please try again.");
                         ResetConsoleColor();
                         pdfPath = GetUserInput("Enter PDF path:");
                     }
@@ -69,7 +70,7 @@ namespace PDFExtractionTest
                 string fileNameNoExt = Path.GetFileNameWithoutExtension(pdfPath);
                 outputDir = pdfPath.Split(".")[0] + "-Images";
 
-                Console.WriteLine("Export to folder: ");
+                Console.WriteLine("📁 Export to folder: ");
                 SetConsoleColor("cyan");
                 Console.WriteLine(outputDir);
                 ResetConsoleColor();
@@ -120,7 +121,7 @@ namespace PDFExtractionTest
 
                 Console.WriteLine();
                 SetConsoleColor("green");
-                Console.WriteLine("PDF pages extracted and saved as PNG images.");
+                Console.WriteLine("✅ PDF pages extracted and saved as PNG images.\n");
                 ResetConsoleColor();
             }
         }
@@ -135,10 +136,7 @@ namespace PDFExtractionTest
 
         static string? RemoveQuotations(string path)
         {
-            if (string.IsNullOrEmpty(path))
-                return null;
-            else
-                return path.Trim(new char[] { '"' });
+            return string.IsNullOrEmpty(path) ? null : path.Trim(new char[] { '"' });
         }
 
         static void SetConsoleColor(string color)
