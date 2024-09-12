@@ -8,7 +8,7 @@ namespace PDFExtractionTest
     {
         static void Main(string[] args)
         {
-            ResetConsoleColor();
+            Helpers.ResetConsoleColor();
             Console.Clear();
 
             string? pdfPath;
@@ -16,27 +16,27 @@ namespace PDFExtractionTest
 
             // User prompt to get PDF file path
             Console.WriteLine();
-            pdfPath = GetUserInput("Enter PDF file path:");
-            pdfPath = RemoveQuotations(pdfPath);
+            pdfPath = Helpers.GetUserInput("Enter PDF file path:");
+            pdfPath = Helpers.RemoveQuotations(pdfPath);
 
             while (true)
             {
                 if (!File.Exists(pdfPath) || Path.GetExtension(pdfPath).ToLower() != ".pdf")
                 {
-                    SetConsoleColor("yellow");
+                    Helpers.SetConsoleColor("yellow");
                     Console.WriteLine("⚠️ The file does not exist or is not a PDF. Please enter a valid PDF file path.");
-                    ResetConsoleColor();
+                    Helpers.ResetConsoleColor();
                     Console.WriteLine();
-                    pdfPath = GetUserInput("Enter PDF file path:");
-                    pdfPath = RemoveQuotations(pdfPath);
+                    pdfPath = Helpers.GetUserInput("Enter PDF file path:");
+                    pdfPath = Helpers.RemoveQuotations(pdfPath);
                 }
                 else
                 {
                     Console.Clear();
                     Console.WriteLine("📄 Source file: ");
-                    SetConsoleColor("cyan");
+                    Helpers.SetConsoleColor("cyan");
                     Console.WriteLine(pdfPath);
-                    ResetConsoleColor();
+                    Helpers.ResetConsoleColor();
                     Console.WriteLine();
                     break;
                 }
@@ -58,10 +58,10 @@ namespace PDFExtractionTest
                     }
                     catch (Exception e)
                     {
-                        SetConsoleColor("yellow");
+                        Helpers.SetConsoleColor("yellow");
                         Console.WriteLine("⚠️ Invalid file path or file does not exist. Please try again.");
-                        ResetConsoleColor();
-                        pdfPath = GetUserInput("Enter PDF path:");
+                        Helpers.ResetConsoleColor();
+                        pdfPath = Helpers.GetUserInput("Enter PDF path:");
                     }
                 }
 
@@ -71,9 +71,9 @@ namespace PDFExtractionTest
                 outputDir = pdfPath.Split(".")[0] + "-Images";
 
                 Console.WriteLine("📁 Export to folder: ");
-                SetConsoleColor("cyan");
+                Helpers.SetConsoleColor("cyan");
                 Console.WriteLine(outputDir);
-                ResetConsoleColor();
+                Helpers.ResetConsoleColor();
                 Console.WriteLine();
 
                 // Ensure the output directory exists by creating it
@@ -84,9 +84,9 @@ namespace PDFExtractionTest
                 }
                 catch (Exception e)
                 {
-                    SetConsoleColor("red");
+                    Helpers.SetConsoleColor("red");
                     Console.WriteLine($"Failed to create directory {outputDir}: {e.Message}");
-                    ResetConsoleColor();
+                    Helpers.ResetConsoleColor();
                     return;
                 }
 
@@ -104,71 +104,26 @@ namespace PDFExtractionTest
                         try
                         {
                             image.Save(newFilePath, ImageFormat.Png);
-                            SetConsoleColor("green");
+                            Helpers.SetConsoleColor("green");
                             Console.Write($"Page {i + 1} saved as ");
-                            ResetConsoleColor();
+                            Helpers.ResetConsoleColor();
                             Console.Write($"{fileNameNoExt}_Page{i + 1}.png");
                             Console.WriteLine();
                         }
                         catch (Exception e)
                         {
-                            SetConsoleColor("red");
+                            Helpers.SetConsoleColor("red");
                             Console.WriteLine($"Failed to save Page {i + 1} as an image: {e.Message}");
-                            ResetConsoleColor();
+                            Helpers.ResetConsoleColor();
                         }
                     }
                 }
 
                 Console.WriteLine();
-                SetConsoleColor("green");
+                Helpers.SetConsoleColor("green");
                 Console.WriteLine("✅ PDF pages extracted and saved as PNG images.\n");
-                ResetConsoleColor();
+                Helpers.ResetConsoleColor();
             }
-        }
-
-        static string? GetUserInput(string prompt)
-        {
-            Console.Write(prompt + " ");
-            string? inputLine = Console.ReadLine();
-
-            return string.IsNullOrEmpty(inputLine) ? null : inputLine;
-        }
-
-        static string? RemoveQuotations(string path)
-        {
-            return string.IsNullOrEmpty(path) ? null : path.Trim(new char[] { '"' });
-        }
-
-        static void SetConsoleColor(string color)
-        {
-            switch (color)
-            {
-                case "red":
-                    Console.ForegroundColor = ConsoleColor.Red;
-                    break;
-                case "green":
-                    Console.ForegroundColor = ConsoleColor.Green;
-                    break;
-                case "yellow":
-                    Console.ForegroundColor = ConsoleColor.Yellow;
-                    break;
-                case "blue":
-                    Console.ForegroundColor = ConsoleColor.Blue;
-                    break;
-                case "cyan":
-                    Console.ForegroundColor = ConsoleColor.Cyan;
-                    break;
-                case "magenta":
-                    Console.ForegroundColor = ConsoleColor.Magenta;
-                    break;
-                default:
-                    break;
-            }
-        }
-
-        static void ResetConsoleColor()
-        {
-            Console.ForegroundColor = ConsoleColor.White;
         }
     }
 }
